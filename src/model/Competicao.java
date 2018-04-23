@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by Marcelo on 19/04/2018.
@@ -11,9 +14,13 @@ public class Competicao {
     private String nome;
     private Fase faseToOne;
     private Categoria categoria;
+    private List<Time> participantes;
 
-    public Competicao() {
+    public Competicao(String nome) {
         this.codigo =  sequence++;
+        this.nome =  nome;
+        this.participantes = new ArrayList<>();
+        
     }
 
     public long getCodigo() {
@@ -47,6 +54,32 @@ public class Competicao {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
+    
+    /**
+    * 
+    * @param time
+    * @return 
+    */   
+    public boolean addParticipante(Time time){
+        if (this.ehTimeValido(time)){
+            this.participantes.add(time);
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * 
+     * @param time
+     * @return 
+     */
+    private boolean ehTimeValido(Time time){
+          return !participantes.contains(time);
+    }
+    
+
+    
 
     @Override
     public String toString() {

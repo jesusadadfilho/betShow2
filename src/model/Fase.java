@@ -1,8 +1,5 @@
 package model;
 
-
-import java.util.Random;
-
 /**
  * Created by Marcelo on 19/04/2018.
  */

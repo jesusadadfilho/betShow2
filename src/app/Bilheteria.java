@@ -8,7 +8,6 @@ import model.Aposta;
 import model.Apostador;
 import model.Bilhete;
 import model.Jogo;
-import java.io.Console;
 public class Bilheteria {
 
 	public static void main(String[] args) {

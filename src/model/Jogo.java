@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Marcelo on 19/04/2018.
@@ -10,23 +11,17 @@ public class Jogo {
 
     public long id;
     private Date data;
-    Time timeMandante;
-    Time timeVisitante;
-    Resultado resultado;
-    Fase faseToOne;
-    Rodada rodada;
+    private final Time timeMandante;
+    private final Time timeVisitante;
+    private int placarMandante;
+    private int placarVisitante;
+    private int status;
+    private List<Aposta> apostas;
+    private static int sequence = 0;
 
-
-    public Jogo() {
-    }
-
-    public Jogo(Date data, Time timeMandante, Time timeVisitante) {
-        this.data = data;
-        this.timeMandante = timeMandante;
-        this.timeVisitante = timeVisitante;
-    }
-    
     public Jogo(Time timeMandante, Time timeVisitante) {
+        this.id =  sequence++;
+        this.data = new Date();
         this.timeMandante = timeMandante;
         this.timeVisitante = timeVisitante;
     }
@@ -35,48 +30,39 @@ public class Jogo {
         return data;
     }
 
-    public void setData(Date data) {
-        this.data = data;
-    }
-
     public Time getTimeMandante() {
         return timeMandante;
-    }
-
-    public void setTimeMandante(Time timeMandante) {
-        this.timeMandante = timeMandante;
     }
 
     public Time getTimeVisitante() {
         return timeVisitante;
     }
 
-    public void setTimeVisitante(Time timeVisitante) {
-        this.timeVisitante = timeVisitante;
+        
+    public int getPlacarMandante() {
+        return placarMandante;
     }
 
-    public Resultado getResultado() {
-        return resultado;
+    public void setPlacarMandante(int placarMandante) {
+        this.placarMandante = placarMandante;
     }
 
-    public void setResultado(Resultado resultadoToOne) {
-        this.resultado = resultadoToOne;
+    public int getPlacarVisitante() {
+        return placarVisitante;
     }
 
-    public Fase getFaseToOne() {
-        return faseToOne;
+    public void setPlacarVisitante(int placarVisitante) {
+        this.placarVisitante = placarVisitante;
     }
 
-    public void setFaseToOne(Fase faseToOne) {
-        this.faseToOne = faseToOne;
+    public int getStatus() {
+        return status;
     }
 
-    public Rodada getRodada() {
-        return rodada;
+    public void setStatus(int status) {
+        this.status = status;
     }
-
-    public void setRodada(Rodada rodada) {
-        this.rodada = rodada;
-    }
+    
+    
 }
 

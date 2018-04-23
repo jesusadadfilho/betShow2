@@ -9,8 +9,12 @@ public class Time {
 
     public long id;
     private String nome;
+    private static int sequence = 0;
 
-    public Time() {
+
+    public Time(String nome) {
+        this.id = sequence++;
+        this.nome = nome;
     }
 
     public String getNome() {
@@ -20,4 +24,11 @@ public class Time {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    @Override
+    public String toString() {
+         return this.id +"-"+ getNome();
+    }
+    
+    
 }

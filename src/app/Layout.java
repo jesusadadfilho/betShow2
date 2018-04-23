@@ -29,19 +29,23 @@ public class Layout {
         System.out.println("**********  BetShow - Competi√ß√£o ************");
         System.out.println("1 - Listar");
         System.out.println("2 - Adicionar");
+        System.out.println("3 - Adicionar Time");
         System.out.println("0 - Sair");
         Scanner op = new Scanner(System.in);
         return  op.nextInt();
     }
-
+    /**
+     * 
+     * @return Adiciona uma nova competicao
+     */
     public static Competicao formCompeticao(){
         Database database = new Database();
-        Competicao competicao = new Competicao();
+        Competicao competicao;
 
         System.out.println("**********  BetShow - Competi√ß√£o - Cadastro ************");
         System.out.println("Digite a descricao");
         Scanner descricao = new Scanner(System.in);
-        competicao.setNome(descricao.next());
+        competicao =  new Competicao(descricao.next());
 
         System.out.println("Digite a fase:" + database.getFases().toString());
         Scanner fase = new Scanner(System.in);
@@ -53,6 +57,33 @@ public class Layout {
         return competicao;
     }
     
+    
+    /**
+     * 
+     * @param  competicoes  Lista de competicoes para escolher uma e adicionar uma time
+     * @param  times  Lista de times para escolher uma e adicionar na competicao 
+     */
+    public static void formAddTimeCompeticao(List<Competicao> competicoes, List<Time> times){
+        Database database = new Database();
+        Competicao competicao;
+        Time time;
+        System.out.println("**********  BetShow - Competi√ß√£o  - Adicionar Time ************");
+        System.out.println("Escolha uma competicao:");
+        System.out.println(competicoes.toString());
+        
+        Scanner competicaoIndex = new Scanner(System.in);
+        competicao =  competicoes.get(competicaoIndex.nextInt());
+            
+        System.out.println("Escolha uma competicao:");
+        System.out.println(times.toString());
+        Scanner timeIndex = new Scanner(System.in);
+        time =  times.get(timeIndex.nextInt());
+        
+        if(competicao.addParticipante(time)) System.out.println(time.getNome() + "Adicionado na comp: "+ competicao.getNome());
+        else System.out.println("Erro ao inserir este time na competi√ß√£o.");
+
+    }
+    
     public static int menuTimes(){
         System.out.println("**********  BetShow - times ************");
         System.out.println("1 - Listar");
@@ -62,17 +93,14 @@ public class Layout {
         return  op.nextInt();
     }
     
-    public static void formarTimes(List<Time> times) {
-		if(times.size() <= 10) {
-			Time time = new Time();
-			System.out.println("**********  BetShow - Time - Cadastro ************");
+    public static void formTimes(List<Time> times) {
+		Time time;
+		System.out.println("**********  BetShow - Time - Cadastro ************");
 	        System.out.println("Digite o nome do time: ");
 	        Scanner descricao = new Scanner(System.in);
-	        time.setNome(descricao.next());
+	        time = new Time(descricao.next());
 	        times.add(time);
-		}else {
-			System.out.println("Numero maximo de times exedido!");
-		}
+		
     }
     
     public static void formarJogos(List<Time> times, List<Jogo> jogos) {
@@ -94,7 +122,7 @@ public class Layout {
     			System.out.println((j +1) + " - " + jogos.get(j).getTimeMandante().getNome() + " vs " + jogos.get(j).getTimeVisitante().getNome());
     		}
     		for(int i = 0; i < jogos.size();i++) {
-    			System.out.println("Qual ser· o resultado do jogo " + (i + 1) + "?");
+    			System.out.println("Qual serÔøΩ o resultado do jogo " + (i + 1) + "?");
     			System.out.println("0 - empate, 1 - Vitoria da casa, 2 - Vitoria do visitante");
     			Scanner op = new Scanner(System.in);
     	        apostas.add(new Aposta(jogos.get(i)));
@@ -113,7 +141,7 @@ public class Layout {
     			System.out.println(jogo.getResultado().getResultado());
     		}
     	}else {
-    		System.out.println("N„o h· jogos no momento");
+    		System.out.println("NÔøΩo hÔøΩ jogos no momento");
     	}
     	
     	for(int i = 0; i < jogos.size(); i++) {
@@ -123,9 +151,9 @@ public class Layout {
     	}
     	
     	if(venceu) {
-    		System.out.println("parabens vocÍ venceu");
+    		System.out.println("parabens vocÔøΩ venceu");
     	}else {
-    		System.out.println("Infeslimente vocÍ perdeu");
+    		System.out.println("Infeslimente vocÔøΩ perdeu");
     	}
     }
     
